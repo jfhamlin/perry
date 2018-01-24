@@ -1,0 +1,6 @@
+lib Math
+    : Utilities.cpp
+      Intersections.cpp
+      Bounds/BoundingVolumes.cpp
+      Bounds/IBoundingVolume.cpp
+    ;

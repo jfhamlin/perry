@@ -1,0 +1,5 @@
+lib GLUTWindow
+    : glutWindow.cc
+      glutMaster.cc
+    : <warnings>off
+    ;

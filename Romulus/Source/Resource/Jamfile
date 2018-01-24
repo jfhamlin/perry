@@ -1,0 +1,6 @@
+lib Resource
+    : MutableGeometryChunk.cpp
+      MD5MeshParser.cpp
+      Sweep.cpp
+      GeometryGenerators.cpp
+    ;

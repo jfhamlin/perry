@@ -1,0 +1,24 @@
+lib GLee
+    : GLee.c
+    : <warnings>off # Disable warnings for third-party source.
+    ;
+
+lib OpenGL
+    : #DeferredSceneRenderer.cpp
+      #DiffuseSceneRenderer.cpp
+      #PrimitiveSceneRenderer.cpp
+      Framebuffer.cpp
+      GLee
+      #OrthographicRenderer.cpp
+      RenderDevice.cpp
+      ShaderProgram.cpp
+      ShaderProgramManager.cpp
+      TextureManager.cpp
+      OpenGLTexture.cpp
+      Utilities.cpp
+      #WireframeSceneRenderer.cpp
+      #RenderPipeline.cpp
+      #ColorControlFilter.cpp
+      #ToneMappingFilter.cpp
+      SimpleGeometryCache.cpp
+    ;

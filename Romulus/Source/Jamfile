@@ -1,0 +1,8 @@
+alias AllLibraries
+    : Math//Math
+      Render//Render
+      File//File
+      Platform//Platform
+      Resource//Resource
+      Utility//Utility
+    ;

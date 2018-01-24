@@ -1,0 +1,4 @@
+lib PlatformSDL
+    : InputServer.cpp
+      Window.cpp
+    ;

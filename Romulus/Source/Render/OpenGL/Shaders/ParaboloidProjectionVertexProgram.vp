@@ -1,0 +1,21 @@
+#version 120
+uniform float NearDistance;
+uniform float FarDistance;
+void main()
+{
+    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+    // We want positive z in front, but since -z is the canonical view
+    // direction, we must invert z here.
+    gl_Position.z *= -1.0;
+    gl_Position /= gl_Position.w;
+    gl_FrontColor = gl_BackColor = vec4(1, 1, 1,
+                                        0.5 + gl_Position.z / FarDistance);
+    float l = length(gl_Position.xyz);
+    gl_Position /= l;
+    gl_Position.z += 1.0;
+    gl_Position.x /= gl_Position.z;
+    gl_Position.y /= gl_Position.z;
+    gl_Position.z = 2.0 * ((l - NearDistance) /
+                           (FarDistance - NearDistance)) - 1.0;
+    gl_Position.w = 1.0;
+}

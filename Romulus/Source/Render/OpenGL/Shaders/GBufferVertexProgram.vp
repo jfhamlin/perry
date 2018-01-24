@@ -1,0 +1,16 @@
+#version 120
+attribute vec3 Tangent;
+uniform mat4 ObjectToWorldTransform;
+uniform mat3 InverseTransposeObjectToWorldTransform;
+varying vec3 WorldNormal;
+varying vec3 WorldTangent;
+varying vec3 WorldPosition;
+void main()
+{
+    gl_TexCoord[0] = gl_MultiTexCoord0;
+    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+    WorldPosition = (ObjectToWorldTransform * gl_Vertex).xyz;
+    WorldNormal = normalize(InverseTransposeObjectToWorldTransform *
+                            normalize(gl_Normal));
+    WorldTangent = normalize(InverseTransposeObjectToWorldTransform * Tangent);
+}

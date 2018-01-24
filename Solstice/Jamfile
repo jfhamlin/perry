@@ -1,0 +1,53 @@
+###
+### Adventure Project Configuration
+###
+### To use, either place a file named user-config.jam in some ancestor
+### directory of this file with the contents:
+###   "using gcc ;" for the gcc toolset or
+###   "using msvc ;" for Microsoft's toolset.
+### Alternatively, the command "bjam toolset=\gcc|msvc\" will select the toolset
+### at the command line.
+###
+
+# Project-wide settings
+project
+    : build-dir Bin  # Set the output directory to "Bin" (default is "bin")
+    : requirements
+      <include>./Include
+      <include>../Romulus/Include
+      <include>../GLUTWindow
+      <warnings-as-errors>off
+      <warnings>all
+      <variant>debug:<define>ENABLE_ASSERTIONS
+      <toolset>gcc:<cxxflags>"-std=c++98 -ansi -pedantic"
+      <toolset>gcc:<cxxflags>"`freetype-config --cflags`"
+      <toolset>gcc:<linkflags>"`freetype-config --libs`"
+      <toolset>gcc:<linkflags>"-rdynamic"
+    ;
+
+# Libraries
+lib GLU GL glut glui ;
+alias LibraryDependencies
+    : glut glui
+    ;
+
+# Solstice exe
+exe Solstice
+    : ../GLUTWindow
+      ../Romulus/Source/File/BasicFileManager.cpp
+      ../Romulus/Source/Math
+      ../Romulus/Source/Platform/Platform_Linux.cpp
+      ../Romulus/Source/Render/GeometryChunk.cpp
+      ../Romulus/Source/Render/OpenGL//GLee
+      ../Romulus/Source/Resource/MutableGeometryChunk.cpp
+      ../Romulus/Source/Resource/Sweep.cpp
+      ../Romulus/Source/Utility/SceneToRIB.cpp
+      ../Romulus/Source/Utility/SceneToSTL.cpp
+      ../Romulus/Source/Utility/TargetCamera.cpp
+      ../Romulus/Source/Utility/Timer.cpp
+      ./Source/Solstice.cpp
+      ./Source//Solstice
+      LibraryDependencies :
+      <framework>OpenGL
+      <link>static
+    ;

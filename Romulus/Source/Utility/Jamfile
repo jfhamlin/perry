@@ -1,0 +1,9 @@
+lib Utility
+    : Log.cpp
+      SceneToRIB.cpp
+      SceneToSTL.cpp
+      Timer.cpp
+      TargetCamera.cpp
+      WorkerThreadPool.cpp
+      ../Platform//Platform
+    ;

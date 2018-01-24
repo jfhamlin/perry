@@ -1,0 +1,6 @@
+lib Render
+    : GeometryChunk.cpp
+      SimpleGeometryChunk.cpp
+      Texture.cpp
+      OpenGL//OpenGL
+    ;

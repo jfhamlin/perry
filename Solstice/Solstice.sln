@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Solstice", "Solstice.vcproj", "{2564F9BD-58B7-4B02-AB30-2D084BE8EF2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2564F9BD-58B7-4B02-AB30-2D084BE8EF2C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2564F9BD-58B7-4B02-AB30-2D084BE8EF2C}.Debug|Win32.Build.0 = Debug|Win32
+		{2564F9BD-58B7-4B02-AB30-2D084BE8EF2C}.Release|Win32.ActiveCfg = Release|Win32
+		{2564F9BD-58B7-4B02-AB30-2D084BE8EF2C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

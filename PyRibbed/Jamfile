@@ -1,0 +1,82 @@
+###
+### Project Configuration
+###
+### To use, either place a file named user-config.jam in some ancestor
+### directory of this file with the contents:
+###   "using gcc ;" for the gcc toolset or
+###   "using msvc ;" for Microsoft's toolset.
+### Alternatively, the command "bjam toolset=\gcc|msvc\" will select the toolset
+### at the command line.
+###
+
+# Project-wide settings
+project
+    : build-dir Bin  # Set the output directory to "Bin" (default is "bin")
+    : requirements
+      <include>./Include
+      <include>../Romulus/Include
+      <include>../GLUTWindow
+      <include>/usr/include/python2.6
+      <warnings-as-errors>off
+      <warnings>all
+      <variant>debug:<define>ENABLE_ASSERTIONS
+      <toolset>gcc:<cxxflags>"-std=c++98 -ansi -pedantic"
+      <toolset>gcc:<cxxflags>"`freetype-config --cflags`"
+      <toolset>gcc:<linkflags>"`freetype-config --libs`"
+      <toolset>gcc:<linkflags>"-rdynamic"
+    ;
+
+# Python configuration.
+using python : 2.6 ; # : /usr/lib/python2.6 ;
+
+lib GLU GL glut glui boost_thread boost_python-mt ;
+
+alias LibraryDependencies
+    : glut glui boost_python-mt
+    ;
+
+alias GLee
+    : ../Romulus/Source/Render/OpenGL/GLee.c
+    : <warnings>off # Disable warnings for third-party source
+    ;
+
+obj MathUtilities
+    : ../Romulus/Source/Math/Utilities.cpp
+    ;
+
+# PyRibbed
+python-extension pyribbed
+    : GLee
+      MathUtilities
+      # ../Romulus/Source/Render/OpenGL/Utilities.cpp
+       ../Romulus/Source/Render/GeometryChunk.cpp
+      ../Romulus/Source/Resource/MutableGeometryChunk.cpp
+      ../Romulus/Source/Resource/Sweep.cpp
+      ../Romulus/Source/Platform/Platform_Linux.cpp
+      ../Romulus/Source/Utility/TargetCamera.cpp
+      ../Romulus/Source/Math/Bounds/BoundingVolumes.cpp
+      ../Romulus/Source/Math/Bounds/IBoundingVolume.cpp
+      ../Romulus/Source/Utility/SceneToRIB.cpp
+      ../Romulus/Source/Utility/SceneToSTL.cpp
+      ../GLUTWindow/glutMaster.cc
+      ../GLUTWindow/glutWindow.cc
+      Source/MainWindow.cpp
+      Source/PyRibbed.cpp
+      LibraryDependencies
+    : <warnings>off # Disable warnings for third-party source
+      <link>static
+    ;
+
+local rule run-test ( test-name : sources + )
+{
+    import testing ;
+    testing.make-test run-pyd : $(sources) : : $(test-name) ;
+}
+
+#run-test test1 : pyribbed Test/arch.py ;
+run-test test1 : pyribbed Test/dodec.py ;
+#run-test test1 : pyribbed Test/fig8.py ;
+#run-test test1 : pyribbed Test/mace.py ;
+#run-test test2 : pyribbed Test/balcony.py ;
+#run-test test1 : pyribbed Test/diagram.py ;
+#run-test test1 : pyribbed Test/torus_knot.py ;

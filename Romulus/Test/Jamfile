@@ -1,0 +1,5 @@
+alias TestAll
+    : Math//Test
+      Resource//Test
+      Utility//Test
+    ;

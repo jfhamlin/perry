@@ -1,0 +1,8 @@
+lib Platform
+    : PlatformImpl
+      SDL//PlatformSDL
+      BufferedInputListener.cpp
+    ;
+
+lib PlatformImpl : Platform_Linux.cpp : <os>LINUX ;
+lib PlatformImpl : Platform_Win32.cpp : <os>NT ;

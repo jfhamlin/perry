@@ -1,0 +1,17 @@
+import testing ;
+
+lib TestLib
+    : Frustum_UnitTest.cpp
+      Intersections_UnitTest.cpp
+      Matrix_UnitTest.cpp
+      Transformations_UnitTest.cpp
+      #Utilities_UnitTest.cpp
+      Vector_UnitTest.cpp
+      BSplineCurve_UnitTest.cpp
+      ///Romulus
+    ;
+
+unit-test Test
+    : TestLib
+      ../TestMain.cpp
+    ;

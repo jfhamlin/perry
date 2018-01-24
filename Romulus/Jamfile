@@ -1,0 +1,42 @@
+###
+### Romulus Project Configuration
+###
+### To use, either place a file named user-config.jam in some ancestor
+### directory of this file with the contents:
+###   "using gcc ;" for the gcc toolset or
+###   "using msvc ;" for Microsoft's toolset.
+### Alternatively, the command "bjam toolset=\gcc|msvc\" will select the toolset
+### at the command line.
+###
+
+# Project-wide settings
+project
+    : build-dir Bin  # Set the output directory to "Bin" (default is "bin")
+    : requirements
+      <include>./Include
+      <warnings-as-errors>on
+      <warnings>all
+      <variant>debug:<define>ENABLE_ASSERTIONS
+      <toolset>gcc:<cxxflags>"-std=c++98 -ansi -pedantic"
+      <toolset>gcc:<cxxflags>"`freetype-config --cflags`"
+      <toolset>gcc:<linkflags>"`freetype-config --libs`"
+      <linkflags>"-undefined dynamic_lookup"
+      <os>LINUX:<linkflags>"-rdynamic"
+    ;
+
+# Refer to the root (this) project in all subprojects by "/".
+use-project / : . ;
+
+# Libraries
+lib GLU GL IL SDL boost_thread ;
+# lib dl : : <name>dl <toolset>gcc ;
+# lib dl : : ;
+alias LibraryDependencies
+    : GLU GL IL SDL boost_thread # dl
+    ;
+
+# Romulus Library
+alias Romulus
+    : Source//AllLibraries
+      LibraryDependencies
+    ;

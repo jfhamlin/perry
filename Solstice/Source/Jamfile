@@ -1,0 +1,5 @@
+lib Solstice
+    : SolsticeScene.cpp
+      SolsticeGUI.cpp
+      MainWindow.cpp
+    ;

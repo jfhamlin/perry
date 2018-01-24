@@ -1,0 +1,11 @@
+import testing ;
+
+lib TestLib
+    : MD5MeshParser_UnitTest.cpp
+      ///Romulus
+    ;
+
+unit-test Test
+    : TestLib
+      ../TestMain.cpp
+    ;
